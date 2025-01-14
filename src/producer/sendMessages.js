@@ -156,7 +156,7 @@ module.exports = ({ logger, cluster, partitioner, eosManager, retrier }) => {
           e.name === 'KafkaJSConnectionClosedError' ||
           (e.name === 'KafkaJSProtocolError' && e.retriable)
         ) {
-          logger.error(`Failed to send messages: ${e.message}`, { retryCount, retryTime })
+          logger.warn(`Failed to send messages: ${e.message}`, { retryCount, retryTime })
           await cluster.refreshMetadata()
           throw e
         }
